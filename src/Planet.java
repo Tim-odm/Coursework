@@ -7,6 +7,7 @@ public class Planet {
     private String planetName;
     private String planetDistance;
     private String planetPeriod;
+
     public Planet(String planetName, double planetDistance) {
         this.planetName = setPlanetName(planetName);
         this.planetDistance = fmt(setPlanetdistance(planetDistance));
