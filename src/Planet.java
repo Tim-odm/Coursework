@@ -31,6 +31,7 @@ public class Planet {
     public double calcPlanetPeriod(double planetDistance) {
         return Math.sqrt(planetDistance*planetDistance*planetDistance);
     }
+
     // toString method
     public String toString() {
         return format(LIST_PLANET, planetName, planetDistance, planetPeriod);
