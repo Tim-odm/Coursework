@@ -1,12 +1,10 @@
+import java.util.ArrayList;
 
 public class SolarSystem {
     private static final String STAR_MSG = "Star %s has planets:\n";
-    private static final String LIST_PLANET = "%s is %.3fAU from its start, and orbits" +
-            " in %.3f years\n";
     private final String starName;
-    private String planetName;
-    private double planetDistance;
-    private double planetPeriod;
+    private Planet newPlanet;
+    private static int planetCounter = 0;
 
     // Constructor (NB: name refers to star name)
     public SolarSystem(String name) {
@@ -21,29 +19,13 @@ public class SolarSystem {
     // Method to add planet
     // TODO create a planet class
     public void addPlanet(String planetName, double planetDistance) {
-        this.planetName = setPlanetName(planetName);
-        this.planetDistance = setPlanetDistance(planetDistance);
-        this.planetPeriod = setPlanetPeriod(planetDistance);
+        newPlanet = new Planet(planetName, planetDistance);
     }
 
-    public String setPlanetName(String planetName) {
-        return planetName;
-    }
-
-    public double setPlanetDistance(double planetDistance){
-        return planetDistance;
-    }
-
-    public double setPlanetPeriod(double planetDistance) {
-        return calcPlanetPeriod(planetDistance);
-    }
-    public double calcPlanetPeriod(double planetDistance) {
-        return Math.sqrt(planetDistance*planetDistance*planetDistance);
-    }
-
+    // toString method
     public String toString() {
         return String.format(STAR_MSG, starName)
-                + String.format(LIST_PLANET, planetName, planetDistance, planetPeriod);
+                + newPlanet;
 
     }
 }
