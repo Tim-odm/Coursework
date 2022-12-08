@@ -3,8 +3,7 @@ import java.util.ArrayList;
 public class SolarSystem {
     private static final String STAR_MSG = "Star %s has planets:\n";
     private final String starName;
-    private Planet newPlanet;
-    private static int planetCounter = 0;
+    private ArrayList<Planet> planetArray = new ArrayList<>();
 
     // Constructor (NB: name refers to star name)
     public SolarSystem(String name) {
@@ -17,15 +16,17 @@ public class SolarSystem {
     }
 
     // Method to add planet
-    // TODO create a planet class
     public void addPlanet(String planetName, double planetDistance) {
-        newPlanet = new Planet(planetName, planetDistance);
+        planetArray.add(new Planet(planetName, planetDistance));
     }
 
     // toString method
     public String toString() {
+        String output = "";
+        for (Planet p: planetArray) {
+            output += p.toString();
+        }
         return String.format(STAR_MSG, starName)
-                + newPlanet;
-
+                + output;
     }
 }
