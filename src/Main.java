@@ -1,6 +1,7 @@
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
-        System.out.println("My name is Tim");
+        SolarSystem ourSystem = new SolarSystem("Our system");
+        ourSystem.addPlanet("Mercury", 0.39);
+        System.out.println(ourSystem);
     }
 }

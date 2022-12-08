@@ -1,14 +1,16 @@
-import com.sun.jdi.VoidType;
-import java.util.ArrayList;
 
 public class SolarSystem {
-
-    private final String name;
-    private int planetCounter = 0;
+    private static final String STAR_MSG = "Star %s has planets:\n";
+    private static final String LIST_PLANET = "%s is %.3fAU from its start, and orbits" +
+            " in %.3f years\n";
+    private final String starName;
+    private String planetName;
+    private double planetDistance;
+    private double planetPeriod;
 
     // Constructor (NB: name refers to star name)
     public SolarSystem(String name) {
-        this.name = setName(name);
+        this.starName = setName(name);
     }
 
     // Method to set planet name;
@@ -18,13 +20,30 @@ public class SolarSystem {
 
     // Method to add planet
     // TODO create a planet class
-    // Planets should be accessed via an array
-    public void addPlanet(String planetName, double distance) {
-        Planet planet = new Planet(planetName, distance);
+    public void addPlanet(String planetName, double planetDistance) {
+        this.planetName = setPlanetName(planetName);
+        this.planetDistance = setPlanetDistance(planetDistance);
+        this.planetPeriod = setPlanetPeriod(planetDistance);
+    }
+
+    public String setPlanetName(String planetName) {
+        return planetName;
+    }
+
+    public double setPlanetDistance(double planetDistance){
+        return planetDistance;
+    }
+
+    public double setPlanetPeriod(double planetDistance) {
+        return calcPlanetPeriod(planetDistance);
+    }
+    public double calcPlanetPeriod(double planetDistance) {
+        return Math.sqrt(planetDistance*planetDistance*planetDistance);
     }
 
     public String toString() {
-        String output = "Star " + this.name + " has planets:\n" ;
-        return output;
+        return String.format(STAR_MSG, starName)
+                + String.format(LIST_PLANET, planetName, planetDistance, planetPeriod);
+
     }
 }

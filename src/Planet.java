@@ -1,10 +1,10 @@
 public class Planet {
     private String planetName;
-    private double distance;
-    private double orbitalPeriod;
-    public Planet(String planetName, double distance) {
+    private double planetDistance;
+    private double planetPeriod;
+    public Planet(String planetName, double planetDistance) {
         this.planetName = setPlanetName(planetName);
-        this.distance = setPlanetMass(distance);
+        this.planetDistance = setPlanetdistance(planetDistance);
     }
 
     // Set planet name
@@ -12,14 +12,12 @@ public class Planet {
         return planetName;
     }
 
-    // Set planet mass
-    private double setPlanetMass(double distance) {
-        return distance;
-    }
+    // Set planet distance
+    private double setPlanetdistance(double planetDistance) {
 
+}
     // toString method
     public String toString() {
-        return planetName + " is " + distance + "AU from its star, and orbit in " +
-                orbitalPeriod + " years\n";
+        return null;
     }
 }
