@@ -14,8 +14,8 @@ public class Planet {
 
     // Set planet distance
     private double setPlanetdistance(double planetDistance) {
-
-}
+        return planetDistance;
+    }
     // toString method
     public String toString() {
         return null;
