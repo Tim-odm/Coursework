@@ -10,7 +10,7 @@ public class SolarSystem {
         this.starName = setName(name);
     }
 
-    // Method to set planet name;
+    // Method to set solar system name;
     private String setName(String name) {
         return name;
     }
@@ -18,6 +18,16 @@ public class SolarSystem {
     // Method to add planet
     public void addPlanet(String planetName, double planetDistance) {
         planetArray.add(new Planet(planetName, planetDistance));
+    }
+
+    // Method to get planet by name
+    public Planet getPlanet(String planetName) {
+        for (Planet planet : planetArray) {
+            if (planet.getPlanetName().equals(planetName)) {
+                return planet;
+            }
+        }
+        return null;
     }
 
     // toString method

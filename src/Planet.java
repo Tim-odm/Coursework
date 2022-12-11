@@ -19,6 +19,11 @@ public class Planet {
         return planetName;
     }
 
+    // Get planet name
+    public String getPlanetName() {
+        return planetName;
+    }
+
     public static String fmt(double input) {
         DecimalFormat format = new DecimalFormat("0.0##");
         return format.format(input);
