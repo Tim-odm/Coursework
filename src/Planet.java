@@ -50,8 +50,12 @@ public class Planet {
 
     // Equals method
     public boolean equals(Planet other) {
-        boolean bool = this.planetName.equals(other.planetName);
-        return bool;
+        if (!this.planetName.equals(other.planetName)) {
+            return false;
+        } else if (this.getPlanetDistance() != other.getPlanetDistance()) {
+            return false;
+        }
+        return true;
     }
 
     // toString method
