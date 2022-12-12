@@ -2,22 +2,59 @@ import java.util.ArrayList;
 
 public class SolarSystem {
     private static final String STAR_MSG = "Star %s has planets:\n";
-    private final String starName;
+    private String starName;
+    private double starLumi;
     private ArrayList<Planet> planetArray = new ArrayList<>();
 
     // Constructor (NB: name refers to star name)
     public SolarSystem(String name) {
-        this.starName = setName(name);
+        setName(name);
+    }
+
+    // Constructor for level 3
+    public SolarSystem(String name, double starLumi) {
+        setName(name);
+        setStarLumi(starLumi);
     }
 
     // Method to set solar system name;
-    private String setName(String name) {
-        return name;
+    private void setName(String name) {
+        this.starName = name;
+    }
+
+    private void setStarLumi(double starLumi) {
+        this.starLumi = starLumi;
+    }
+
+    // Method to calculate Luminosity factor
+    public double calcLuminosityFactor() {
+        return Math.sqrt(starLumi);
+    }
+
+    // Method to determine if a planet is habitable
+    public boolean isHabitable(double planetDistance, double planetMass) {
+        double least = 0.75 * calcLuminosityFactor();
+        double most = 2.0 * calcLuminosityFactor();
+        if (least > planetDistance || planetDistance > most) {
+            return false;
+        }
+        if (planetMass < 0.6 || planetMass > 7.0) {
+            return false;
+        }
+        return true;
     }
 
     // Method to add planet
     public void addPlanet(String planetName, double planetDistance) {
         planetArray.add(new Planet(planetName, planetDistance));
+    }
+
+    // Second add planet method for level 3
+    public void addPlanet(String planetName, double planetMass,
+                          double planetRadius, double planetDistance) {
+        boolean isHabitable = isHabitable(planetDistance, planetMass);
+        planetArray.add(new Planet(planetName, planetMass,
+                planetRadius, planetDistance, isHabitable));
     }
 
     // Method to get planet by name
@@ -31,9 +68,8 @@ public class SolarSystem {
     }
 
     // Closest method
-    static Planet closestPlanet;
     public Planet closest() {
-        closestPlanet = planetArray.get(0);
+        Planet closestPlanet = planetArray.get(0);
         for (Planet planet : planetArray) {
             if (planet.getPlanetDistance() < closestPlanet.getPlanetDistance()) {
                 closestPlanet = planet;
