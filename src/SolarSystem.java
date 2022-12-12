@@ -21,13 +21,36 @@ public class SolarSystem {
     }
 
     // Method to get planet by name
-    public Planet getPlanet(String planetName) {
+    public Planet getPlanetByName(String planetName) {
         for (Planet planet : planetArray) {
             if (planet.getPlanetName().equals(planetName)) {
                 return planet;
             }
         }
         return null;
+    }
+
+    // Closest method
+    static Planet closestPlanet;
+    public Planet closest() {
+        closestPlanet = planetArray.get(0);
+        for (Planet planet : planetArray) {
+            if (planet.getPlanetDistance() < closestPlanet.getPlanetDistance()) {
+                closestPlanet = planet;
+            }
+        }
+        return closestPlanet;
+    }
+
+    // Furthest method
+    public Planet furthest() {
+        Planet furthestPlanet = planetArray.get(0);
+        for (Planet planet : planetArray) {
+            if (planet.getPlanetDistance() > furthestPlanet.getPlanetDistance()) {
+                furthestPlanet = planet;
+            }
+        }
+        return furthestPlanet;
     }
 
     // toString method

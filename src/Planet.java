@@ -24,6 +24,11 @@ public class Planet {
         return planetName;
     }
 
+    // Get name method
+    public String getName() {
+        return planetName;
+    }
+
     public static String fmt(double input) {
         DecimalFormat format = new DecimalFormat("0.0##");
         return format.format(input);
@@ -34,8 +39,19 @@ public class Planet {
         return planetDistance;
     }
 
+    // Get planet distance
+    public double getPlanetDistance() {
+        return Double.parseDouble(planetDistance);
+    }
+
     public double calcPlanetPeriod(double planetDistance) {
         return Math.sqrt(planetDistance*planetDistance*planetDistance);
+    }
+
+    // Equals method
+    public boolean equals(Planet other) {
+        boolean bool = this.planetName.equals(other.planetName);
+        return bool;
     }
 
     // toString method
