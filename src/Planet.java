@@ -5,18 +5,22 @@ public class Planet {
     private static final String LIST_PLANET = "%s  is %sAU from its star, and orbits"
             + " in %s years\n";
     private String planetName;
-    private String planetDistance;
-    private String planetPeriod;
+    private double planetDistance;
+    private String sPlanetDistance;
+    private double planetPeriod;
+    private String sPlanetPeriod;
 
     public Planet(String planetName, double planetDistance) {
-        this.planetName = setPlanetName(planetName);
-        this.planetDistance = fmt(setPlanetdistance(planetDistance));
-        this.planetPeriod = fmt(calcPlanetPeriod(planetDistance));
+        setPlanetName(planetName);
+        setPlanetdistance(planetDistance);
+        setPlanetPeriod(planetDistance);
+        sPlanetDistance = fmt(this.planetDistance);
+        sPlanetPeriod = fmt(this.planetPeriod);
     }
 
     // Set planet name
-    private String setPlanetName(String planetName) {
-        return planetName;
+    public void setPlanetName(String planetName) {
+        this.planetName = planetName;
     }
 
     // Get planet name
@@ -35,15 +39,19 @@ public class Planet {
     }
 
     // Set planet distance
-    private double setPlanetdistance(double planetDistance) {
-        return planetDistance;
+    private void setPlanetdistance(double planetDistance) {
+        this.planetDistance = planetDistance;
     }
 
     // Get planet distance
     public double getPlanetDistance() {
-        return Double.parseDouble(planetDistance);
+        return planetDistance;
     }
 
+    // Set planet period
+    public void setPlanetPeriod(double planetDistance) {
+        this.planetPeriod = calcPlanetPeriod(planetDistance);
+    }
     public double calcPlanetPeriod(double planetDistance) {
         return Math.sqrt(planetDistance*planetDistance*planetDistance);
     }
@@ -60,6 +68,6 @@ public class Planet {
 
     // toString method
     public String toString() {
-        return format(LIST_PLANET, planetName, planetDistance, planetPeriod);
+        return format(LIST_PLANET, planetName, sPlanetDistance, sPlanetPeriod);
     }
 }
